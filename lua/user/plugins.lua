@@ -48,7 +48,6 @@ return packer.startup({
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim"
   -- use "tiagovla/scope.nvim"
-  -- use "akinsho/bufferline.nvim"
   use { "akinsho/bufferline.nvim", tag = 'v2.*', requires = "kyazdani42/nvim-web-devicons" }
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
@@ -80,7 +79,7 @@ return packer.startup({
     run = "cd app && npm install",
     ft = "markdown",
   }
-  use "stevearc/stickybuf.nvim"
+  -- use "stevearc/stickybuf.nvim"
 
   use "christoomey/vim-tmux-navigator"
 
@@ -106,6 +105,7 @@ return packer.startup({
   use "lunarvim/darkplus.nvim"
   use "morhetz/gruvbox"
   use "jacoborus/tender.vim"
+  use "lunarvim/onedarker.nvim"
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp" }

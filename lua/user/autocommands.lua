@@ -63,11 +63,13 @@ vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
-  callback = function()
-    require("user.winbar").get_winbar()
-  end,
-})
+if vim.fn.has('nvim-0.8') == 1 then
+  vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
+    callback = function()
+      require("user.winbar").get_winbar()
+    end,
+  })
+end
 
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   callback = function()
@@ -93,6 +95,8 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
     vim.cmd "hi link illuminatedWord LspReferenceText"
   end,
 })
+
+vim.cmd [[ au FocusGained,BufEnter * :checktime ]]
 
 -- vim.api.nvim_create_autocmd({ "ModeChanged" }, {
 --   callback = function()
