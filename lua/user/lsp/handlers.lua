@@ -78,31 +78,47 @@ local function lsp_keymaps(bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
+local buf_map = function(bufnr, mode, lhs, rhs, opts)
+  vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
+    silent = true,
+  })
+end
+
 M.on_attach = function(client, bufnr)
   -- TODO: refactor this into a method that checks if string in list
-
-  local status_ok, aerial = pcall(require, "aerial")
-  if not status_ok then
-    return
+  if client.name == "tsserver" then
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+    local ts_utils = require("nvim-lsp-ts-utils")
+    ts_utils.setup({})
+    ts_utils.setup_client(client)
+    buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
+    buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
+    buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
   end
-  aerial.on_attach(client, bufnr)
 
-  if client.name == "jdt.ls" then
-    if JAVA_DAP_ACTIVE then
-      require("jdtls").setup_dap { hotcodereplace = "auto" }
-      require("jdtls.dap").setup_dap_main_class_configs()
-    end
-    M.capabilities.textDocument.completion.completionItem.snippetSupport = false
-    vim.lsp.codelens.refresh()
-  else
-    local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    if not status_cmp_ok then
-      return
-    end
+  -- local status_ok, aerial = pcall(require, "aerial")
+  -- if not status_ok then
+  --   return
+  -- end
+  -- aerial.on_attach(client, bufnr)
 
-    M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-    M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
-  end
+  -- if client.name == "jdt.ls" then
+  --   if JAVA_DAP_ACTIVE then
+  --     require("jdtls").setup_dap { hotcodereplace = "auto" }
+  --     require("jdtls.dap").setup_dap_main_class_configs()
+  --   end
+  --   M.capabilities.textDocument.completion.completionItem.snippetSupport = false
+  --   vim.lsp.codelens.refresh()
+  -- else
+  --   local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  --   if not status_cmp_ok then
+  --     return
+  --   end
+  --
+  --   M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+  --   M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+  -- end
 
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
@@ -112,7 +128,7 @@ function M.enable_format_on_save()
   vim.cmd [[
     augroup format_on_save
       autocmd! 
-      autocmd BufWritePre * lua vim.lsp.buf.format({ async = true }) 
+      autocmd BufWritePre * lua vim.lsp.buf.formatting_seq_sync({})
     augroup end
   ]]
   vim.notify "Enabled format on save"

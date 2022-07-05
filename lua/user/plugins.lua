@@ -1,4 +1,5 @@
 local fn = vim.fn
+vim.opt.termguicolors = true
 
 -- Automatically install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
@@ -39,7 +40,8 @@ packer.init {
 }
 
 -- Install your plugins here
-return packer.startup(function(use)
+return packer.startup({
+  function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
@@ -47,6 +49,7 @@ return packer.startup(function(use)
   use "numToStr/Comment.nvim"
   -- use "tiagovla/scope.nvim"
   -- use "akinsho/bufferline.nvim"
+  use { "akinsho/bufferline.nvim", tag = 'v2.*', requires = "kyazdani42/nvim-web-devicons" }
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
@@ -79,6 +82,8 @@ return packer.startup(function(use)
   }
   use "stevearc/stickybuf.nvim"
 
+  use "christoomey/vim-tmux-navigator"
+
   -- UI
   use "stevearc/dressing.nvim"
   use "ghillb/cybu.nvim"
@@ -99,6 +104,8 @@ return packer.startup(function(use)
   use "folke/tokyonight.nvim"
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/darkplus.nvim"
+  use "morhetz/gruvbox"
+  use "jacoborus/tender.vim"
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp" }
@@ -109,11 +116,11 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
-  use {
-    "tzachar/cmp-tabnine",
-    run = "./install.sh",
-    requires = "hrsh7th/nvim-cmp",
-  }
+  -- use {
+  --   "tzachar/cmp-tabnine",
+  --   run = "./install.sh",
+  --   requires = "hrsh7th/nvim-cmp",
+  -- }
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -123,32 +130,33 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use "jose-elias-alvarez/nvim-lsp-ts-utils"
   use "simrat39/symbols-outline.nvim"
   use "ray-x/lsp_signature.nvim"
   use "b0o/SchemaStore.nvim"
   use "folke/trouble.nvim"
   -- use "github/copilot.vim"
-  use {
-    "zbirenbaum/copilot.lua",
-    event = { "VimEnter" },
-    config = function()
-      vim.defer_fn(function()
-        require "user.copilot"
-      end, 100)
-    end,
-  }
-  use {
-    "zbirenbaum/copilot-cmp",
-    module = "copilot_cmp",
-  }
+  -- use {
+  --   "zbirenbaum/copilot.lua",
+  --   event = { "VimEnter" },
+  --   config = function()
+  --     vim.defer_fn(function()
+  --       require "user.copilot"
+  --     end, 100)
+  --   end,
+  -- }
+  -- use {
+  --   "zbirenbaum/copilot-cmp",
+  --   module = "copilot_cmp",
+  -- }
   use "RRethy/vim-illuminate"
   use "stevearc/aerial.nvim"
   use "j-hui/fidget.nvim"
   -- TODO: set this up
   use "rmagatti/goto-preview"
 
-  -- Java
-  use "mfussenegger/nvim-jdtls"
+  -- -- Java
+  -- use "mfussenegger/nvim-jdtls"
 
   -- Rust
   use "simrat39/rust-tools.nvim"
@@ -210,4 +218,8 @@ return packer.startup(function(use)
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
-end)
+  end,
+  config = {
+    max_jobs = 10,
+  }
+})

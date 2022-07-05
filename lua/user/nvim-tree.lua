@@ -35,6 +35,12 @@ nvim_tree.setup {
   -- open_on_tab = false,
   -- hijack_cursor = false,
   update_cwd = true,
+  respect_buf_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_cwd = true,
+    ignore_list = {},
+  },
   -- update_to_buf_dir = {
   --   enable = true,
   --   auto_open = true,
@@ -102,11 +108,6 @@ nvim_tree.setup {
       warning = icons.diagnostics.Warning,
       error = icons.diagnostics.Error,
     },
-  },
-  update_focused_file = {
-    enable = true,
-    update_cwd = true,
-    ignore_list = {},
   },
   -- system_open = {
   --   cmd = nil,
