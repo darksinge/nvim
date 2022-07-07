@@ -43,7 +43,10 @@ local options = {
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.opt.fillchars.eob=" "
+-- vim.opt.fillchars.eob = " "
+-- vim.opt.fillchars = vim.opt.fillchars + "vertleft: "
+-- vim.opt.fillchars = vim.opt.fillchars + "vertright: "
+vim.opt.fillchars = vim.opt.fillchars + 'eob: '
 
 vim.opt.shortmess:append "c"
 
@@ -56,8 +59,8 @@ vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 -- vim.cmd [[ highlight EndOfBuffer ctermfg=bg guifg=bg ]]
 
-vim.filetype.add({
-    extension = {
-      conf = "dosini",
+vim.filetype.add {
+  extension = {
+    conf = "dosini",
   },
-})
+}
