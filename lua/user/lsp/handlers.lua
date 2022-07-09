@@ -130,7 +130,7 @@ function M.enable_format_on_save()
   vim.cmd [[
     augroup format_on_save
       autocmd! 
-      autocmd BufWritePre * lua vim.lsp.buf.formatting_seq_sync({})
+      autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 2000)
     augroup end
   ]]
   vim.notify "Enabled format on save"

@@ -11,27 +11,28 @@ local code_actions = null_ls.builtins.code_actions
 
 -- https://github.com/prettier-solidity/prettier-plugin-solidity
 -- npm install --save-dev prettier prettier-plugin-solidity
-local utils = require('null-ls.utils')
+local utils = require "null-ls.utils"
 null_ls.setup {
   debug = false,
   sources = {
     -- formatting.prettier.with {
-    --   extra_filetypes = { "toml" },
-    --   root_dir = utils.root_pattern(".null-ls-root", "Makefile", ".git"),
     --   prefer_local = "node_modules/.bin",
+    --   root_dir = utils.root_pattern(".null-ls-root", "Makefile", ".git"),
     -- },
+    formatting.prettierd.with {
+      prefer_local = "node_modules/.bin",
+      root_dir = utils.root_pattern(".null-ls-root", "Makefile", ".git"),
+    },
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
     formatting.google_java_format,
-    diagnostics.eslint,
+    diagnostics.eslint.with {
+      only_local = "node_modules/.bin",
+    },
     code_actions.eslint,
-    formatting.prettierd,
-    -- formatting.prettierd.with {
-    --   exe = "prettierd",
-    --   filetypes = { "typescript", "javascript", "typescriptreact", "vue" },
-    --   prefer_local = "node_modules/.bin",
-    --   root_dir = utils.root_pattern(".null-ls-root", "Makefile", ".git"),
-    -- },
+
+    -- diagnostics.standardjs,
+    -- formatting.standardjs,
   },
 }
 
@@ -64,7 +65,7 @@ null_ls.setup {
 --   },
 --
 -- }
---
+
 -- -- -- set additional linters
 -- local linters = null_ls.linters
 -- linters.setup {

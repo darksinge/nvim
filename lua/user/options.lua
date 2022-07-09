@@ -37,7 +37,9 @@ local options = {
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
-  guifont = "Ubuntu Mono - Bront",               -- the font used in graphical neovim applications
+  -- guifont = "Ubuntu Mono - Bront:h16",               -- the font used in graphical neovim applications
+  guifont = "FiraCode Nerd Font Mono:h20",               -- the font used in graphical neovim applications
+  -- guifont = "Fira Code:h20",               -- the font used in graphical neovim applications
   shell = "/bin/zsh",
 }
 
