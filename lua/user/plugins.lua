@@ -50,7 +50,7 @@ return packer.startup({
   -- use "tiagovla/scope.nvim"
   use { "akinsho/bufferline.nvim", tag = 'v2.*', requires = "kyazdani42/nvim-web-devicons" }
   use "moll/vim-bbye"
-  use "nvim-lualine/lualine.nvim"
+  use "christianchiarulli/lualine.nvim"
   use "akinsho/toggleterm.nvim"
   use "ahmedkhalf/project.nvim"
   use "lewis6991/impatient.nvim"
@@ -153,7 +153,8 @@ return packer.startup({
   use "stevearc/aerial.nvim"
   use "j-hui/fidget.nvim"
   -- TODO: set this up
-  use "rmagatti/goto-preview"
+  -- use "rmagatti/goto-preview"
+  use "nvim-lua/lsp_extensions.nvim"
 
   -- -- Java
   -- use "mfussenegger/nvim-jdtls"
