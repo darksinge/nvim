@@ -116,11 +116,11 @@ return packer.startup({
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
-  -- use {
-  --   "tzachar/cmp-tabnine",
-  --   run = "./install.sh",
-  --   requires = "hrsh7th/nvim-cmp",
-  -- }
+  use {
+    "tzachar/cmp-tabnine",
+    run = "./install.sh",
+    requires = "hrsh7th/nvim-cmp",
+  }
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -136,19 +136,19 @@ return packer.startup({
   use "b0o/SchemaStore.nvim"
   use "folke/trouble.nvim"
   -- use "github/copilot.vim"
-  -- use {
-  --   "zbirenbaum/copilot.lua",
-  --   event = { "VimEnter" },
-  --   config = function()
-  --     vim.defer_fn(function()
-  --       require "user.copilot"
-  --     end, 100)
-  --   end,
-  -- }
-  -- use {
-  --   "zbirenbaum/copilot-cmp",
-  --   module = "copilot_cmp",
-  -- }
+  use {
+    "zbirenbaum/copilot.lua",
+    event = { "VimEnter" },
+    config = function()
+      vim.defer_fn(function()
+        require "user.copilot"
+      end, 100)
+    end,
+  }
+  use {
+    "zbirenbaum/copilot-cmp",
+    module = "copilot_cmp",
+  }
   use "RRethy/vim-illuminate"
   use "stevearc/aerial.nvim"
   use "j-hui/fidget.nvim"
