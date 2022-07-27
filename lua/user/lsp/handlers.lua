@@ -100,6 +100,9 @@ M.on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
     local ts_utils = require("nvim-lsp-ts-utils")
+    -- ts_utils.setup({
+    --   filter_out_diagnostics_by_code = { 80001 }
+    -- })
     ts_utils.setup({})
     ts_utils.setup_client(client)
     buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
@@ -130,7 +133,7 @@ function M.enable_format_on_save()
   vim.cmd [[
     augroup format_on_save
       autocmd! 
-      autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 2000)
+      autocmd BufWritePre * lua vim.lsp.buf.formatting_seq_sync(nil, 2000)
     augroup end
   ]]
   vim.notify "Enabled format on save"
@@ -156,5 +159,6 @@ function M.remove_augroup(name)
 end
 
 vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]]
+M.enable_format_on_save()
 
 return M

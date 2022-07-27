@@ -14,6 +14,7 @@ local servers = {
   "solc",
   "sumneko_lua",
   "tflint",
+  -- "volar",
   "tsserver",
   "pyright",
   "yamlls",
@@ -101,6 +102,11 @@ for _, server in pairs(servers) do
     rust_tools.setup(rust_opts)
     goto continue
   end
+
+  -- if server == "volar" then
+  --   local volar_ls_opts = require "user.lsp.settings.volar"
+  --   opts = vim.tbl_deep_extend("force", volar_ls_opts, opts)
+  -- end
 
   lspconfig[server].setup(opts)
   ::continue::
