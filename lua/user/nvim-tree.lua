@@ -30,15 +30,20 @@ nvim_tree.setup {
   filters = {
     custom = { ".git" },
     exclude = { ".gitignore" },
+    -- dotfiles = true,
   },
   -- auto_close = true,
   -- open_on_tab = false,
   -- hijack_cursor = false,
-  update_cwd = true,
-  respect_buf_cwd = true,
+
+  prefer_startup_root = true,
+  sync_root_with_cwd = false,
+  -- update_cwd = true,
+
+  respect_buf_cwd = false,
   update_focused_file = {
     enable = true,
-    update_cwd = true,
+    update_root = true,
     ignore_list = {},
   },
   -- update_to_buf_dir = {
