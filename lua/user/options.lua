@@ -42,6 +42,7 @@ local options = {
   -- guifont = "Fira Code:h20",               -- the font used in graphical neovim applications
   shell = "/bin/zsh",
   hidden = true,
+  -- background = 'light',
 }
 
 vim.g.neovide_input_macos_alt_is_meta = true

@@ -46,7 +46,9 @@ return packer.startup({
     use "wbthomason/packer.nvim" -- Have packer manage itself
     use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-    use "numToStr/Comment.nvim"
+    use { "numToStr/Comment.nvim", tag = "v0.6" }
+
+
     -- use "tiagovla/scope.nvim"
     use { "akinsho/bufferline.nvim", tag = 'v2.*', requires = "kyazdani42/nvim-web-devicons" }
     use "moll/vim-bbye"
@@ -106,6 +108,7 @@ return packer.startup({
     use "morhetz/gruvbox"
     use "jacoborus/tender.vim"
     use "lunarvim/onedarker.nvim"
+    use "NLKNguyen/papercolor-theme"
 
     -- cmp plugins
     use { "hrsh7th/nvim-cmp" }
