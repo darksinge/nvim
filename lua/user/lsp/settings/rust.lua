@@ -1,5 +1,6 @@
 return {
   tools = {
+    -- autoSetHints = false,
     on_initialized = function()
       vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "CursorHold", "InsertLeave" }, {
         pattern = { "*.rs" },
@@ -8,9 +9,12 @@ return {
         end,
       })
     end,
+
+    auto = false,
     inlay_hints = {
       -- Only show inlay hints for the current line
       only_current_line = false,
+      auto = false,
 
       -- Event which triggers a refersh of the inlay hints.
       -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
@@ -81,3 +85,41 @@ return {
     },
   },
 }
+-- return {
+--   settings = {
+--     rust_analyzer = {
+--       inlayHints = {
+--         bindingModeHints = {
+--           enable = true,
+--         },
+--         typeHints = {
+--           enable = true,
+--           hideClosureInitialization = false,
+--           hideNamedConstructor = false,
+--         },
+--         chainingHints = {
+--           enable = true,
+--         },
+--         closingBraceHints = {
+--           enable = true,
+--           minLines = 25,
+--         },
+--         closureReturnTypeHints = {
+--           enable = "never",
+--         },
+--         lifetimeElisionHints = {
+--           enable = "never",
+--           useParameterNames = false,
+--           maxLength = 25,
+--         },
+--         parameterHints = {
+--           enable = true,
+--         },
+--         reborrowHints = {
+--           enable = "never",
+--         },
+--         renderColons = true,
+--       },
+--     },
+--   },
+-- }

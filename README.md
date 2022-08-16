@@ -1,19 +1,16 @@
-# Neovim from scratch
+# My Neovim Config
 
 ## Try out this config
 
 Make sure to remove or move your current `nvim` directory
 
-```
+```sh
 git clone git@github.com:ChristianChiarulli/nvim.git ~/.config/nvim
 ```
 
-Run `nvim` and wait for the plugins to be installed 
+Run `nvim` and wait for the plugins to be installed
 
-**NOTE:** (You will notice treesitter pulling in a bunch of parsers the next time you open Neovim) 
-
-
-each video will be associated with a branch so checkout the one you are interested in
+**NOTE:** (You will notice treesitter pulling in a bunch of parsers the next time you open Neovim)
 
 ## Get healthy
 
@@ -33,13 +30,13 @@ First we'll fix copy/paste
 
 - On Ubuntu
 
-  ```
+  ```sh
   sudo apt install xsel
   ```
 
 - On Arch Linux
 
-  ```
+  ```sh
   sudo pacman -S xsel
   ```
 
@@ -47,13 +44,13 @@ Next we need to install python support (node is optional)
 
 - Neovim python support
 
-  ```
+  ```sh
   pip install pynvim
   ```
 
 - Neovim node support
 
-  ```
+  ```sh
   npm i -g neovim
   ```
 
@@ -72,13 +69,13 @@ Run: `$ fc-cache -f -v`
 
 ## Java Debugging and Testing
 
-```
+```sh
 git clone git@github.com:microsoft/java-debug.git
 cd java-debug/
 ./mvnw clean install
 ```
 
-```
+```sh
 git clone git@github.com:microsoft/vscode-java-test.git
 cd vscode-java-test
 npm install
@@ -87,7 +84,7 @@ npm run build-plugin
 
 ## Install latest rust-analyzer binary
 
-```
+```sh
 $ mkdir -p ~/.local/bin
 $ curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
 $ chmod +x ~/.local/bin/rust-analyzer

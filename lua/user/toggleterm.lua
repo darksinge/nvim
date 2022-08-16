@@ -5,7 +5,7 @@ end
 
 toggleterm.setup {
   size = 20,
-  open_mapping = [[<m-\>]],
+  open_mapping = [[<m-0>]],
   hide_numbers = true,
   shade_filetypes = {},
   shade_terminals = true,
@@ -35,7 +35,7 @@ toggleterm.setup {
 function _G.set_terminal_keymaps()
   local opts = { noremap = true }
   -- vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
+  -- vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, "t", "<m-h>", [[<C-\><C-n><C-W>h]], opts)
   vim.api.nvim_buf_set_keymap(0, "t", "<m-j>", [[<C-\><C-n><C-W>j]], opts)
   vim.api.nvim_buf_set_keymap(0, "t", "<m-k>", [[<C-\><C-n><C-W>k]], opts)
@@ -48,14 +48,20 @@ local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new {
   cmd = "lazygit",
   hidden = true,
-  direction = "tab",
-  on_open = function(term)
+  direction = "float",
+  float_opts = {
+    border = "none",
+    width = 100000,
+    height = 100000,
+  },
+  on_open = function(_)
     vim.cmd "startinsert!"
-    vim.cmd "set laststatus=0"
+    -- vim.cmd "set laststatus=0"
   end,
-  on_close = function(term)
-    vim.cmd "set laststatus=3"
+  on_close = function(_)
+    -- vim.cmd "set laststatus=3"
   end,
+  count = 99,
 }
 
 function _LAZYGIT_TOGGLE()
@@ -123,6 +129,8 @@ local float_term = Terminal:new {
       "<cmd>1ToggleTerm direction=float<cr>",
       { noremap = true, silent = true }
     )
+    vim.api.nvim_buf_set_keymap(term.bufnr, "", "<m-2>", "<nop>", { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(term.bufnr, "", "<m-3>", "<nop>", { noremap = true, silent = true })
   end,
   count = 1,
 }
@@ -159,6 +167,7 @@ local vertical_term = Terminal:new {
       "<cmd>2ToggleTerm size=60 direction=vertical<cr>",
       { noremap = true, silent = true }
     )
+    vim.api.nvim_buf_set_keymap(term.bufnr, "", "<m-3>", "<nop>", { noremap = true, silent = true })
   end,
   count = 2,
 }
@@ -195,6 +204,7 @@ local horizontal_term = Terminal:new {
       "<cmd>3ToggleTerm size=10 direction=horizontal<cr>",
       { noremap = true, silent = true }
     )
+    vim.api.nvim_buf_set_keymap(term.bufnr, "", "<m-2>", "<nop>", { noremap = true, silent = true })
   end,
   count = 3,
 }

@@ -9,7 +9,7 @@ local keymap = vim.api.nvim_set_keymap
 
 
 
-keymap("", "s", ":HopWordCurrentLine<cr>", { silent = true })
+keymap("", "L", ":HopWordCurrentLine<cr>", { silent = true })
 -- keymap("", "S", ":HopChar2<cr>", { silent = true })
 -- keymap("", "S", ":HopPattern<cr>", { silent = true })
 
