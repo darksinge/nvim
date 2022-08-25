@@ -11,7 +11,7 @@ keymap("n", "<Space>", "", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 keymap("n", "<C-Space>", "<cmd>WhichKey \\<leader><cr>", opts)
-keymap("n", "<C-i>", "<C-i>", opts)
+-- keymap("n", "<C-i>", "<C-i>", opts)
 
 -- Modes
 --   normal_mode = "n",
@@ -173,13 +173,13 @@ keymap("x", "<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vi
 
 -- vim.api.nvim_set_keymap("n", "<tab>", "<cmd>lua require('telescope.builtin').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>", opts)
 
-vim.api.nvim_set_keymap(
-  "n",
-  "<tab>",
-  "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>"
-  ,
-  opts
-)
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<tab>",
+--   "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>"
+--   ,
+--   opts
+-- )
 vim.api.nvim_set_keymap(
   "n",
   "<s-tab>",
@@ -192,15 +192,15 @@ vim.api.nvim_set_keymap("n", "<m-g>", "<cmd>Telescope git_branches<cr>", opts)
 vim.api.nvim_set_keymap("n", "<s-enter>", "<cmd>TodoQuickFix<cr>", opts)
 -- l = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
 
-vim.cmd [[
-  function! QuickFixToggle()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-      copen
-    else
-      cclose
-    endif
-  endfunction
-]]
+-- vim.cmd [[
+--   function! QuickFixToggle()
+--     if empty(filter(getwininfo(), 'v:val.quickfix'))
+--       copen
+--     else
+--       cclose
+--     endif
+--   endfunction
+-- ]]
 
 keymap("n", "<m-q>", ":call QuickFixToggle()<cr>", opts)
 keymap("n", "<c-l>", "<cmd>lua vim.lsp.codelens.run()<cr>", opts)

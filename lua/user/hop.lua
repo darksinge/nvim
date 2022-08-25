@@ -7,9 +7,6 @@ hop.setup()
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
-
-
-keymap("", "L", ":HopWordCurrentLine<cr>", { silent = true })
 -- keymap("", "S", ":HopChar2<cr>", { silent = true })
 -- keymap("", "S", ":HopPattern<cr>", { silent = true })
 
