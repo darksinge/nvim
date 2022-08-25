@@ -138,7 +138,7 @@ return packer.startup({
     use "ray-x/lsp_signature.nvim"
     use "b0o/SchemaStore.nvim"
     use "folke/trouble.nvim"
-    use "github/copilot.vim"
+    -- use "github/copilot.vim"
     -- use {
     --   "zbirenbaum/copilot.lua",
     --   event = { "VimEnter" },
