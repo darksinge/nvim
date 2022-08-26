@@ -20,7 +20,7 @@ local servers = {
   "solidity_ls",
   "sumneko_lua",
   "tflint",
-  -- "volar",
+  "volar",
   "terraformls",
   "tsserver",
   "pyright",
@@ -139,10 +139,10 @@ for _, server in pairs(servers) do
     goto continue
   end
 
-  -- if server == "volar" then
-  --   local volar_ls_opts = require "user.lsp.settings.volar"
-  --   opts = vim.tbl_deep_extend("force", volar_ls_opts, opts)
-  -- end
+  if server == "volar" then
+    local volar_ls_opts = require "user.lsp.settings.volar"
+    opts = vim.tbl_deep_extend("force", volar_ls_opts, opts)
+  end
 
   lspconfig[server].setup(opts)
   ::continue::

@@ -111,29 +111,21 @@ local buf_map = function(bufnr, mode, lhs, rhs, opts)
 end
 
 M.on_attach = function(client, bufnr)
-  -- TODO: refactor this into a method that checks if string in list
+  lsp_keymaps(bufnr)
+  attach_navic(client, bufnr)
+
   if client.name == "tsserver" then
     require("lsp-inlayhints").on_attach(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-    local ts_utils = require("nvim-lsp-ts-utils")
-    -- ts_utils.setup({
-    --   filter_out_diagnostics_by_code = { 80001 }
-    -- })
-    ts_utils.setup({})
-    ts_utils.setup_client(client)
+    -- local ts_utils = require("nvim-lsp-ts-utils")
+    -- -- ts_utils.setup({
+    -- --   filter_out_diagnostics_by_code = { 80001 }
+    -- -- })
+    -- ts_utils.setup({})
+    -- ts_utils.setup_client(client)
     buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
     buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
     buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
   end
-
-  local status_ok, aerial = pcall(require, "aerial")
-  if not status_ok then
-    return
-  end
-  aerial.on_attach(client, bufnr)
-  lsp_keymaps(bufnr)
-  attach_navic(client, bufnr)
 
   if client.name == "jdt.ls" then
     vim.lsp.codelens.refresh()
