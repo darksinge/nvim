@@ -59,6 +59,15 @@ end
 
 local opts = {}
 
+-- lspconfig.tsserver.setup{
+--   on_attach = require("user.lsp.handlers").on_attach,
+-- }
+require('typescript').setup({
+  server = {
+    on_attach = require("user.lsp.handlers").on_attach,
+  }
+})
+
 for _, server in pairs(servers) do
   opts = {
     on_attach = require("user.lsp.handlers").on_attach,
@@ -101,6 +110,13 @@ for _, server in pairs(servers) do
   if server == "tsserver" then
     local tsserver_opts = require "user.lsp.settings.tsserver"
     opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+    require('typescript').setup({
+      disable_commands = true,
+      server = opts
+    })
+    -- ts_utils.setup({
+    --   filter_out_diagnostics_by_code = { 80001 }
+    -- })
   end
 
   if server == "pyright" then

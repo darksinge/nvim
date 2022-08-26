@@ -114,18 +114,9 @@ M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
   attach_navic(client, bufnr)
 
-  if client.name == "tsserver" then
-    require("lsp-inlayhints").on_attach(client, bufnr)
-    -- local ts_utils = require("nvim-lsp-ts-utils")
-    -- -- ts_utils.setup({
-    -- --   filter_out_diagnostics_by_code = { 80001 }
-    -- -- })
-    -- ts_utils.setup({})
-    -- ts_utils.setup_client(client)
-    buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
-    buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
-    buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
-  end
+  -- if client.name == "tsserver" then
+  --   require("lsp-inlayhints").on_attach(client, bufnr)
+  -- end
 
   if client.name == "jdt.ls" then
     vim.lsp.codelens.refresh()
