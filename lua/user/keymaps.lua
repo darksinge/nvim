@@ -87,6 +87,8 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+keymap("n", "<A-\\>", ":lua require'toggleterm'.toggle(1)<cr>", opts)
+keymap("t", "<A-\\>", ":lua require'toggleterm'.toggle(1)<cr>", term_opts)
 
 -- Custom
 -- keymap("n", "<c-h>", "<cmd>nohlsearch<cr>", opts)
